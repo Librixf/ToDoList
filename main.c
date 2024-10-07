@@ -60,6 +60,7 @@ int zapis(int s) {
         stroka[i] = s;
         ++i;
     }
+    stroka[i + 1] = '\0';
     printf("Запись завершена!\n");
 
     return 0;
