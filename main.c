@@ -3,6 +3,7 @@
 #define MAX 1000
 
 char stroka[MAX];
+int i;
 
 int vibor(int n, int s);
 int zapis(int s);
@@ -46,39 +47,47 @@ int vibor(int n, int s) {
 }
 
 int zapis(int s) {
-    int i;
+    extern int i;
     extern char stroka[MAX];
     
-    for (int i = 0; i <= MAX; i++)
-    {
-        stroka[i] = 0;
-    }
-    i = 0;
-
     while ((s = getchar()) != '\n')
     {
         stroka[i] = s;
         ++i;
     }
-    stroka[i + 1] = '\0';
+    ++i;
+    stroka[i] = '\0';
     printf("Запись завершена!\n");
 
     return 0;
 }
 
 char vivod(void) {
-    int i = 0;
+    int n,c;
+    n = c = 0;
     extern char stroka[MAX];
+    
     printf("Вывод: ");
     while (true)
     {
-        if (stroka[i] == 0)
+        if (stroka[n] == '\0')
         {
-            break;
+            scanf("%*[^\n]");
+            scanf("%*c");
+            printf("\nВывести следующую заметку? 1 или 0\nЧисло: ");
+            c = getchar();
+            
+            if (c == '0')
+            {
+                return 0;
+            } else if (c == '1')
+            {
+                printf("Вывод: ");
+            }
         }
 
-        printf("%c", stroka[i]);
-        ++i;
+        printf("%c", stroka[n]);
+        ++n;
     }
     
     printf("\nВывод зевершён!\n");
@@ -87,14 +96,15 @@ char vivod(void) {
 
 char udalenie(void) {
     extern char stroka[MAX];
-    int i;
+    extern i;
+    int n;
 
-    for (i = 0; i <= MAX; i++)
+    for (n = 0; n <= MAX; n++)
     {
-        stroka[i] = 0;
+        stroka[n] = 0;
     }
 
-    i = 0;
+    n = i = 0;
 
     printf("Очистка зевершена!\n");
 
